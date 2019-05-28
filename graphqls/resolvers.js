@@ -1,7 +1,7 @@
-const db = require('./db');
+const db = require('../db');
 const Query = {
     greeting:() => {
-       return "Wellcome to GraphQl world!!!"
+       return "Wellcome to GraphQL world!!!"
     },
     sayHello:(root,args,context,info) => `Hi ${args.name} GraphQL server says Hello to you!!`,
     students:() => db.students.list(),
