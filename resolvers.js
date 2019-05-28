@@ -1,7 +1,7 @@
 const db = require('./db');
 const Query = {
     greeting:() => {
-       return "hello from  TutorialsPoint !!!"
+       return "Wellcome to GraphQl world!!!"
     },
     sayHello:(root,args,context,info) => `Hi ${args.name} GraphQL server says Hello to you!!`,
     students:() => db.students.list(),
@@ -12,7 +12,15 @@ const Query = {
     },
     setFavouriteColor:(root,args) => {
         return  "Your Fav Color is :" + args.color;
-    }
+    },
+    greetingWithAuth:(root,args,context,info) => {
+
+        //check if the context.user is null
+        if (!context.user) {
+           throw new Error('Unauthorized');
+        }
+        return "Hello, welcome back : " + context.user.firstName;
+     }
 }
 
 const Student = {
@@ -59,7 +67,6 @@ const Mutation = {
         if(password.length < 8) {
             throw new Error("password should be minimum 8 characters")
         }
-        
         
         return "success";
      }
