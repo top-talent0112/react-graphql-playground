@@ -1,3 +1,40 @@
-type Query  {
-   test: String
+type Query {
+   greeting:String
+   sayHello(name:String!):String
+   students:[Student]
+   studentById(id:ID!):Student
+   setFavouriteColor(color:ColorType):String
+}
+
+type Mutation {
+   createStudent(collegeId:ID,firstName:String,lastName:String):String
+   addStudent_returns_object(collegeId:ID,firstName:String,lastName:String):Student
+   signUp(input:SignUpInput):String
+}
+
+type Student {
+   id:ID!
+   firstName:String
+   lastName:String
+   fullName:String 
+   college:College
+}
+
+type College {
+   id:ID!
+   name:String
+   location:String
+   rating:Float
+}
+
+enum ColorType {
+   RED
+   BLUE
+   GREEN
+}
+
+input SignUpInput {
+   email:String!,
+   password:String!,
+   firstName:String!
 }
